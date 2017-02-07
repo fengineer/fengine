@@ -27,4 +27,14 @@
 *.out
 *.app
 
+# vs project
+*.swp
+*.opensdf
+*.sdf
+*.suo
+*.user
+Debug/
+Release/
+Temp/
+
 .DS_Store
