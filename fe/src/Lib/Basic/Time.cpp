@@ -18,8 +18,8 @@ namespace Fengine
         public:
             Win32PerformanceFrequency()
             {
-                QueryPerformanceFrequency((LARGE_INTEGER *)&m_frequency);   // »ñÈ¡»úÆ÷¹ÌÓĞµÄĞÔÄÜÆµÂÊ
-                m_frequency /= 1000;    // Ã¿ºÁÃë¶àÉÙ´Î
+                QueryPerformanceFrequency((LARGE_INTEGER *)&m_frequency);   // è·å–æœºå™¨å›ºæœ‰çš„æ€§èƒ½é¢‘ç‡
+                m_frequency /= 1000;    // æ¯æ¯«ç§’å¤šå°‘æ¬¡
             }
 
             sint64 GetFrequency()
@@ -37,16 +37,16 @@ namespace Fengine
     {
     #ifdef _WIN32
         sint64 tick;
-        QueryPerformanceCounter((LARGE_INTEGER *)&tick);    // ÏµÍ³Æô¶¯ÖÁ½ñµÄĞÔÄÜ¼ÆÊı
+        QueryPerformanceCounter((LARGE_INTEGER *)&tick);    // ç³»ç»Ÿå¯åŠ¨è‡³ä»Šçš„æ€§èƒ½è®¡æ•°
         return tick / g_win32Frequency.GetFrequency();
     #else
         struct timeval t;
         sint64 ms;
         
         gettimeofday(&t, 0);
-        ms = t.tv_sec;              // t.tv_secÎªint32£¬¸´ÖÆµ½sint64ºóÔÙ×ö³Ë·¨ÔËËã±ÜÃâÒç³ö
-        ms *= 1000;                 // Ãë×ªÎªºÁÃë
-        ms += (t.tv_usec / 1000);   // Î¢Ãë×ªÎªºÁÃë
+        ms = t.tv_sec;              // t.tv_secä¸ºint32ï¼Œå¤åˆ¶åˆ°sint64åå†åšä¹˜æ³•è¿ç®—é¿å…æº¢å‡º
+        ms *= 1000;                 // ç§’è½¬ä¸ºæ¯«ç§’
+        ms += (t.tv_usec / 1000);   // å¾®ç§’è½¬ä¸ºæ¯«ç§’
 
         return ms;
     #endif
