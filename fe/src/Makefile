@@ -17,10 +17,10 @@ LIBS = -lpthread -ldl -lutil
 CFLAGS = -I$(FENGINELIBDIR ) -Xlinker -export-dynamic -g3
 
 libs: $(wildcard *.cpp)
-$(CXX) $(CFLAGS) $(BASICDIR)/*.cpp -c;
-$(CXX) $(CFLAGS) $(NETWORKDIR)/*.cpp -c;
+	$(CXX) $(CFLAGS) $(BASICDIR)/*.cpp -c;
+	$(CXX) $(CFLAGS) $(NETWORKDIR)/*.cpp -c;
 
 basicLibTest: $(wildcard *.cpp)
-$(CXX) $(CFLAGS) $(BASICLIBTESTDIR)/*.cpp -c;
-$(CXX) $(CFLAGS) *.o $(LIBS);
+	$(CXX) $(CFLAGS) $(BASICLIBTESTDIR)/*.cpp -c;
+	$(CXX) $(CFLAGS) *.o $(LIBS);
 
