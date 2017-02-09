@@ -23,7 +23,7 @@ along with Fengine.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifdef _WIN32
 	#include "winsock2.h"
-	#include "Wstcpip.h"
+	#include "Ws2tcpip.h"
 
 	#ifndef socklen_t
 		typedef int socklen_t;
@@ -38,14 +38,22 @@ along with Fengine.  If not, see <http://www.gnu.org/licenses/>.
 	#include <fcntl.h>
 #endif
 
+
 namespace Fengine
 {
 
 namespace Network
 {
+#ifdef _WIN32
+    typedef SOCKET sock;
+#else
+    typedef int sock;
+#endif
+
+    typedef unsigned short int port;
+    typedef unsigned long int ipaddress;
 
 }	// end namespace Network
-
 
 }	// end namespace Fengine
 
