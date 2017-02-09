@@ -2,19 +2,19 @@
 CXX = g++
 
 # LIB directory
-FENGINELIBDIR = ./LIB
+FENGINELIBDIR = ./Lib
 BASICDIR = $(FENGINELIBDIR )/Basic
-NETWORKDIR = $(FENGINELIBDIR )/Network
+NETWORKDIR = $(FENGINELIBDIR)/Network
 
 # test directory
 TESTDIR = ../test
-BASICLIBTESTDIR = $(TESTDIR )/BasicLibTest
+BASICLIBTESTDIR = $(TESTDIR)/BasicLibTest
 
 # libraries
 LIBS = -lpthread -ldl -lutil
 
 # flags
-CFLAGS = -I$(FENGINELIBDIR ) -Xlinker -export-dynamic -g3
+CFLAGS = -I$(FENGINELIBDIR) -Xlinker -export-dynamic -g3
 
 libs: $(wildcard *.cpp)
 	$(CXX) $(CFLAGS) $(BASICDIR)/*.cpp -c;
