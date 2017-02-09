@@ -18,32 +18,27 @@ You should have received a copy of the GNU Lesser General Public License
 along with Fengine.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __SOCKET_H__
-#define __SOCKET_H__
-
-#include "Network.h"
+#include "Socket.h"
 
 namespace Fengine
 {
-
 	namespace Network
 	{
-
-		class Socket
+		Socket::Socket()
+			:m_sock(0),
+			m_isBlocking(false)
 		{
-		public:
-			void SetBlocking(bool p_blockMode);
-
-		protected:
-			sock m_sock;
-			bool m_isBlocking;
 		}
 
-
+		void SetBlocking(bool p_isBlocking)
+		{
+			int err;
+			#ifdef _WIN32
+				// todo
+			#else
+			#endif
+		}
 	}	// end namespace Network
 
-}	// end namespace Fengine
 
-
-
-#endif  // __SOCKET_H__
+}	// end namespace Network
