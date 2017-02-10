@@ -3,9 +3,9 @@ CXX = g++
 
 # LIB directory
 FENGINE_LIB_DIR = ../../src/Lib
-BASIC_DIR = $(FENGINELIBDIR )/Basic
-NETWORK_DIR = $(FENGINELIBDIR)/Network
-THREAD_DIR = $(FENGINELIBDIR)/Thread
+BASIC_DIR = $(FENGINE_LIB_DIR)/Basic
+NETWORK_DIR = $(FENGINE_LIB_DIR)/Network
+THREAD_DIR = $(FENGINE_LIB_DIR)/Thread
 
 TELNET_SERVER_DIR = ./TelnetServer
 
@@ -24,3 +24,8 @@ telnetServer: $(wildcard *.cpp)
 	$(CXX) $(CFLAGS) $(TELNET_SERVER_DIR)/*.cpp -c;
 	$(CXX) $(CFLAGS) *.o $(LIBS);
 	
+test: 
+	echo $(FENGINE_LIB_DIR)
+	echo $(BASIC_DIR)
+
+.PHONY: test
