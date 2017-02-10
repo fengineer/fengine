@@ -24,10 +24,15 @@ namespace Fengine
 {
 	namespace Network
 	{
-		Socket::Socket()
-			:m_sock(0),
-			m_isBlocking(false)
+		Socket::Socket(sock p_socket)
+			:m_sock(p_socket),
+			m_isBlocking(true)
 		{
+			if(m_sock != -1)
+			{
+				socklen_t = sizeof(m_localInfo);
+				getsockname(m_sock, (sockaddr *)&m_localInfo, &len);
+			}
 		}
 
 		void SetBlocking(bool p_isBlocking)
@@ -37,6 +42,17 @@ namespace Fengine
 				// todo
 			#else
 			#endif
+		}
+
+		void Socket::Close()
+		{
+			#ifdef _WIN32
+				closesocket(m_sock);
+			#else
+				close(m_sock);
+			#endif
+
+			m_sock = -1;
 		}
 	}	// end namespace Network
 

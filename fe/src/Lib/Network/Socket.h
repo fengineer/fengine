@@ -33,10 +33,16 @@ namespace Fengine
 		{
 		public:
 			void SetBlocking(bool p_blockMode);
+			void Close();
+
+			sock GetSock();
 
 		protected:
+			Socket(sock p_socket = -1);
+
 			sock m_sock;
 			bool m_isBlocking;
+			struct sockaddr_in m_localInfo;
 		}
 
 
