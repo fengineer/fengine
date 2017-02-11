@@ -21,7 +21,8 @@ along with Fengine.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef __NETWORK_H__
 #define __NETWORK_H__
 
+#include "NetworkTypes.h"
+#include "NetworkErrors.h"
 #include "Socket.h"
-
 
 #endif // __NETWORK_H__

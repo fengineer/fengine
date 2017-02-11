@@ -21,32 +21,32 @@ along with Fengine.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef __SOCKET_H__
 #define __SOCKET_H__
 
-#include "Network.h"
+#include "NetworkTypes.h"
 
 namespace Fengine
 {
 
-	namespace Network
+namespace Network
+{
+
+	class Socket
 	{
+	public:
+		void SetBlocking(bool p_blockMode);
+		void Close();
 
-		class Socket
-		{
-		public:
-			void SetBlocking(bool p_blockMode);
-			void Close();
+		sock GetSock();
 
-			sock GetSock();
+	protected:
+		Socket(sock p_socket = -1);
 
-		protected:
-			Socket(sock p_socket = -1);
-
-			sock m_sock;
-			bool m_isBlocking;
-			struct sockaddr_in m_localInfo;
-		}
+		sock m_sock;
+		bool m_isBlocking;
+		struct sockaddr_in m_localInfo;
+	}
 
 
-	}	// end namespace Network
+}	// end namespace Network
 
 }	// end namespace Fengine
 

@@ -22,39 +22,40 @@ along with Fengine.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace Fengine
 {
-	namespace Network
+
+namespace Network
+{
+	Socket::Socket(sock p_socket)
+		:m_sock(p_socket),
+		m_isBlocking(true)
 	{
-		Socket::Socket(sock p_socket)
-			:m_sock(p_socket),
-			m_isBlocking(true)
+		if(m_sock != -1)
 		{
-			if(m_sock != -1)
-			{
-				socklen_t = sizeof(m_localInfo);
-				getsockname(m_sock, (sockaddr *)&m_localInfo, &len);
-			}
+			socklen_t len = sizeof(m_localInfo);
+			getsockname(m_sock, (sockaddr *)&m_localInfo, &len);
 		}
+	}
 
-		void SetBlocking(bool p_isBlocking)
-		{
-			int err;
-			#ifdef _WIN32
-				// todo
-			#else
-			#endif
-		}
+	void SetBlocking(bool p_isBlocking)
+	{
+		int err;
+		#ifdef _WIN32
+			// todo
+		#else
+		#endif
+	}
 
-		void Socket::Close()
-		{
-			#ifdef _WIN32
-				closesocket(m_sock);
-			#else
-				close(m_sock);
-			#endif
+	void Socket::Close()
+	{
+		#ifdef _WIN32
+			closesocket(m_sock);
+		#else
+			close(m_sock);
+		#endif
 
-			m_sock = -1;
-		}
-	}	// end namespace Network
+		m_sock = -1;
+	}
+}	// end namespace Network
 
 
 }	// end namespace Network
