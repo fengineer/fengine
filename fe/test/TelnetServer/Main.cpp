@@ -10,7 +10,7 @@
 
 using namespace Fengine;
 
-int main(int agrc, char *agrv[])
+int main(int argc, char *argv[])
 {
 	Fengine::uint64 passMS = Fengine::GetTimeMS();
 	std::cout << "passMS:" << passMS << std::endl;

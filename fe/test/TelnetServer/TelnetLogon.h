@@ -12,7 +12,7 @@ namespace Network
 	class TelnetLogon : public ConnectionHandler< Telnet, std::string >
 	{
 		typedef Connection<Telnet> CONNECTION;
-        const std::string END_STRING = "\r\n";
+	        static const std::string END_STRING;
 	public:
 		TelnetLogon(CONNECTION &p_conn)
 			:ConnectionHandler<Telnet, std::string>(p_conn)
@@ -56,6 +56,9 @@ namespace Network
 			std::cout << "TelnetLogon::NoRoom." << std::endl;
 		}
 	};
+
+	const std::string TelnetLogon::END_STRING = "\t\n";
+
 
 
 }	// end namespace Network

@@ -34,7 +34,7 @@ namespace Network
 	template<typename PROTOCOL, typename HANDLER>
 	class ConnectionMgr
 	{
-		typedef std::list<Connection<PROTOCOL>> CONNECTION_LIST;
+		typedef std::list< Connection<PROTOCOL> > CONNECTION_LIST;
 		typedef typename CONNECTION_LIST::iterator CONNECTION_LIST_ITER;
 
 	public:
@@ -86,9 +86,9 @@ namespace Network
 	// ------------------------------------------------------------------------
 	template<typename PROTOCOL, typename HANDLER>
 	ConnectionMgr<PROTOCOL, HANDLER>::
-		ConnectionMgr(int p_maxDatarate = 1024,
-						int p_sendTimeout = 60,
-						int p_maxBuffered = 8192)
+		ConnectionMgr(int p_maxDatarate,
+				int p_sendTimeout,
+				int p_maxBuffered)
 		:m_maxDatarate(p_maxDatarate),
 		m_sendTimeout(p_sendTimeout),
 		m_maxBuffered(p_maxBuffered)

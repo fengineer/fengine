@@ -8,7 +8,7 @@ PROJECT_NAME = TestServer
 PROJECT_TYPE = exe
 
 # 源代码目录
-SRC_DIR = ./TelnetServer
+SRC_DIR = .
 # LIB src directory
 FENGINE_LIB_DIR = ../../src/Lib
 BASIC_DIR = $(FENGINE_LIB_DIR)/Basic
@@ -33,22 +33,34 @@ TARGET = $(PROJECT_NAME)
 TARGET_PATH = $(TARGET_DIR)/$(TARGET)
 
 # flags
-CFLAGS = -Xlinker -export-dynamic -g3
+CFLAGS = -g3 -Wall
 CFLAGS += $(INCLUDE_DIR)
 CFLAGS += $(LIB_DIR)
 CFLAGS += $(LIBS)
 
+OBJS = $(patsubst $(BASIC_DIR)/%.cpp, $(TEMP_DIR)/%.o, $(wildcard $(BASIC_DIR)/*.cpp))
+OBJS += $(patsubst $(NETWORK_DIR)/%.cpp, $(TEMP_DIR)/%.o, $(wildcard $(NETWORK_DIR)/*.cpp))
+OBJS += $(patsubst $(THREAD_DIR)/%.cpp, $(TEMP_DIR)/%.o, $(wildcard $(THREAD_DIR)/*.cpp))
+OBJS += $(patsubst $(SRC_DIR)/%.cpp, $(TEMP_DIR)/%.o, $(wildcard $(SRC_DIR)/*.cpp))
+
+# 编译所有源文件
+$(TEMP_DIR)/%.o : $(BASIC_DIR)/%.cpp
+	$(CXX) $(CFLAGS) -c -o $@ $<
+
+$(TEMP_DIR)/%.o : $(NETWORK_DIR)/%.cpp
+	$(CXX) $(CFLAGS) -c -o $@ $<
+
+$(TEMP_DIR)/%.o : $(THREAD_DIR)/%.cpp
+	$(CXX) $(CFLAGS) -c -o $@ $<
+
+$(TEMP_DIR)/%.o : $(SRC_DIR)/%.cpp
+	$(CXX) $(CFLAGS) -c -o $@ $<
+
 # --------------------------------------------------
-all: pre_build libs testServer
+all: pre_build telnetServer
 
-libs: $(wildcard *.cpp)
-	$(CXX) $(CFLAGS) $(BASIC_DIR)/*.cpp $(TEMP_DIR) -c;
-	$(CXX) $(CFLAGS) $(NETWORK_DIR)/*.cpp $(TEMP_DIR) -c;
-	$(CXX) $(CFLAGS) $(THREAD_DIR)/*.cpp $(TEMP_DIR) -c;
-
-$(TARGET_PATH): $(wildcard *.cpp)
-	$(CXX) $(CFLAGS) $(TELNET_SERVER_SRC)/*.cpp $(TEMP_DIR) -c;
-	$(CXX) $(CFLAGS) *.o $(LIBS) -o $(TARGET_DIR) $@;
+$(TARGET_PATH): $(OBJS)
+	$(CXX) -o $@ $(OBJS) $(CFLAGS) 
 	
 telnetServer: $(TARGET_PATH)
 
@@ -62,5 +74,8 @@ clean:
 test: 
 	@echo $(FENGINE_LIB_DIR)
 	@echo $(BASIC_DIR)
+	@echo $(TEMP_DIR)
+	@echo $(TARGET_DIR)
+	@echo $(OBJS)
 
 .PHONY: all pre_build libs telnetServer clean test
