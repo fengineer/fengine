@@ -216,6 +216,8 @@ namespace Network
 	Exception::Exception(Error p_code)
 		:m_code(p_code)
 	{
+		if(p_code == ENotAvailable)
+			;
 	}
 
 	Error Exception::ErrorCode()

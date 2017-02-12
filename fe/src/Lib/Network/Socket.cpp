@@ -40,9 +40,26 @@ namespace Network
 	{
 		int err;
 		#ifdef _WIN32
-			// todo
+			unsigned long mode = !p_isBlocking;	// 与本函数相反的语义
+			err = ioctlsocket(m_sock, FIONBIO, &mode);
 		#else
+			int flags = fcntl(m_sock, F_GETFL, 0);
+			if(p_isBlocking == false)
+            {
+                flags |= O_NONBLOCK;
+            }
+            else
+            {
+                flags &= ~O_NONBLOCK;
+            }
+            err = fcntl( m_sock, F_SETFL, flags );
 		#endif
+        if(err == -1)
+        {
+        	throw(Exception(GetError()));
+        }
+
+        m_isBlocking = p_isBlocking;
 	}
 
 	void Socket::Close()

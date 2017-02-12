@@ -33,12 +33,13 @@ namespace Network
 	{
 	public:
 		void SetBlocking(bool p_blockMode);
+
 		void Close();
 
 		sock GetSock();
 
 	protected:
-		Socket(sock p_socket = -1);
+		Socket(sock p_socket = -1);	// Socket基类不允许实例化
 
 		sock m_sock;
 		bool m_isBlocking;
