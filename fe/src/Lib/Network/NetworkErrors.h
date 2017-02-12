@@ -21,6 +21,9 @@ along with Fengine.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef __NETWORK_ERRORS_H__
 #define __NETWORK_ERRORS_H__
 
+#include <exception>
+#include <string>
+
 namespace Fengine
 {
 
@@ -75,6 +78,23 @@ namespace Network
 		ESocketLimitReached,
 		ENotAvailable,
 		EConnectionClosed
+	}
+
+	Error TranslateError(int p_error, bool p_fromErrno);
+
+	Error GetError(bool p_fromErrno = true);
+
+	class Exception : public std::exception
+	{
+	public:
+		Exception(int p_code);
+
+		Error ErrorCode();
+
+		std::string ErrorString();
+
+	protected:
+		Error m_code;
 	}
 
 } // end namespace Network
