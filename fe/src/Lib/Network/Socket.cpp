@@ -25,7 +25,7 @@ namespace Fengine
 
 namespace Network
 {
-	Socket::Socket(sock p_socket)
+	Socket::Socket(SOCK p_socket)
 		:m_sock(p_socket),
 		m_isBlocking(true)
 	{

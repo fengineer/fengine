@@ -36,12 +36,12 @@ namespace Network
 
 		void Close();
 
-		sock GetSock();
+		SOCK GetSock();
 
 	protected:
-		Socket(sock p_socket = -1);	// Socket基类不允许实例化
+		Socket(SOCK p_socket = -1);	// Socket基类不允许实例化
 
-		sock m_sock;
+		SOCK m_sock;
 		bool m_isBlocking;
 		struct sockaddr_in m_localInfo;
 	}

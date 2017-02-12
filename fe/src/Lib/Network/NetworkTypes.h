@@ -45,9 +45,9 @@ namespace Fengine
 namespace Network
 {
 #ifdef _WIN32
-    typedef SOCKET sock;
+    typedef SOCKET SOCK;
 #else
-    typedef int sock;
+    typedef int SOCK;
 #endif
 
     typedef unsigned short int port;
