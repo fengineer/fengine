@@ -72,7 +72,121 @@ namespace Network
 
 		m_sock = -1;
 	}
-}	// end namespace Network
+
+
+	// ------------------------------------------------------------
+	DataSocket::DataSocket(SOCK p_socket)
+		:Socket(p_socket),
+		m_connected(false),
+		m_remoteInfo()
+	{
+		if(p_socket != -1)
+		{
+			socklen_t len = sizeof(m_remoteInfo);
+			int err = getpeername(p_socket, (struct sockaddr *)&m_remoteInfo, &len);
+			if(err == -1)
+			{
+				throw( Exception(GetError()) );
+			}
+			m_connected = true;
+		}
+	}
+
+	void DataSocket::Connect(IP_ADDRESS p_addr, PORT p_port)
+    {
+        if(m_connected)
+        {
+            throw(Exception(EAlreadyConnected));
+        }
+
+        if(m_sock == -1)
+        {
+        	m_sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+        	if(m_sock == -1)
+        	{
+        		throw(Exception(GetError()));
+        	}
+        }
+
+        // set up the socket address structure
+        m_remoteinfo.sin_family = AF_INET;
+        m_remoteinfo.sin_port = htons( p_port );
+        m_remoteinfo.sin_addr.s_addr = p_addr;
+        memset( &(m_remoteinfo.sin_zero), 0, 8 );
+
+        int err;
+        socklen_t len = sizeof(struct sockaddr);
+        err = connect(m_sock, (struct sockaddr *)&m_remoteinfo, len);
+        if(err == -1)
+        {
+        	throw( Exception( GetError() ) );
+        }
+        m_connected = true;
+
+        err = getsockname(m_sock, (struct sockaddr *)m_localInfo, &len);
+        if(err == -1)
+        {
+        	throw( Exception( GetError() ) );
+        }
+    }
+
+    int DataSocket::Send( const char *p_buffer, int p_size )
+    {
+    	if(m_connected == false)
+    	{
+    		throw( Exception(ENotConnected) );
+    	}
+
+    	int err = send(m_sock, p_buffer, p_size, 0);
+    	if(err == -1)
+    	{
+    		// 非阻塞模式下，阻塞错误相当于发送0字节，不抛出异常而交给上层处理。
+    		Error errno = GetError();
+    		if(errno != EOperationWouldBlock)
+    		{
+    			throw( Exception(errno) );
+    		}
+    		err = 0;
+    	}
+
+    	return err;
+    }
+
+    int DataSocket::Receive( char *p_buffer, int p_size )
+    {
+    	if(m_connected == false)
+    	{
+    		throw( Exception(ENotConnected) );
+    	}
+
+    	int err = recv( m_sock, p_buffer, p_size, 0 );
+    	if( err == 0 )
+    	{
+    		throw Exception( EConnectionClosed );
+    	}
+    	if( err == -1 )
+    	{
+    		throw Exception( GetError() );
+    	}
+
+    	return err;
+    }
+
+    void DataSocket::Close()
+    {
+    	if( m_connected == true )
+    	{
+    		shutdown( m_sock, 2 );
+    	}
+    	Socket::Close();
+
+    	m_connected = false;
+    }
+
+
+    // ------------------------------------------------------------
 
 
 }	// end namespace Network
+}	// end namespace Fengine
+

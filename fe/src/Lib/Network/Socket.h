@@ -36,21 +36,59 @@ namespace Network
 
 		void Close();
 
-		SOCK GetSock();
+		SOCK GetSock() const
+		{
+			return m_sock;
+		}
 
+		PORT GetLocalPort() const
+		{
+			return ntohs( m_localInfo.sin_port );
+		}
+
+		IP_ADDRESS GetLocalAddress() const
+		{
+			return m_localInfo.sin_addr.s_addr;
+		}
 	protected:
 		Socket(SOCK p_socket = -1);	// Socket基类不允许实例化
 
 		SOCK m_sock;
 		bool m_isBlocking;
 		struct sockaddr_in m_localInfo;
-	}
+	};
+
+
+	class DataSocket : public Socket
+	{
+	public:
+		DataSocket(SOCK p_socket);
+
+		void Connect( IP_ADDRESS p_addr, PORT p_port );
+		int Send( const char *p_buffer, int p_size );
+		int Receive( char *p_buffer, int p_size );
+
+		void Close();
+
+		IP_ADDRESS GetRemoteAddress() const
+		{
+			return m_remoteInfo.sin_addr.s_addr;
+		}
+
+		PORT GetRemotePort() const
+		{
+			return m_remoteInfo.sin_port;
+		}
+	protected:
+		bool m_connected;
+
+		struct sockaddr_in m_remoteInfo;
+	};
 
 
 }	// end namespace Network
 
 }	// end namespace Fengine
-
 
 
 #endif  // __SOCKET_H__

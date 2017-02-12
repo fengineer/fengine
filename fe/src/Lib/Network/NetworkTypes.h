@@ -50,8 +50,8 @@ namespace Network
     typedef int SOCK;
 #endif
 
-    typedef unsigned short int port;
-    typedef unsigned long int ipaddress;
+    typedef unsigned short int PORT;
+    typedef unsigned long int IP_ADDRESS;
 
 }	// end namespace Network
 
