@@ -85,6 +85,10 @@ namespace Network
 		struct sockaddr_in m_remoteInfo;
 	};
 
+    class ListeningSocket : public Socket
+    {
+
+    };
 
 }	// end namespace Network
 

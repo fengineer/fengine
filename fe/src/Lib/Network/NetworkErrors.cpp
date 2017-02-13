@@ -20,6 +20,8 @@ along with Fengine.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "NetworkErrors.h"
 
+#include "NetworkTypes.h"
+
 namespace Fengine
 {
 

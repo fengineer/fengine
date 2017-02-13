@@ -20,6 +20,8 @@ along with Fengine.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Socket.h"
 
+#include "NetworkErrors.h"
+
 namespace Fengine
 {
 
@@ -36,7 +38,7 @@ namespace Network
 		}
 	}
 
-	void SetBlocking(bool p_isBlocking)
+    void Socket::SetBlocking(bool p_isBlocking)
 	{
 		int err;
 		#ifdef _WIN32
@@ -109,21 +111,21 @@ namespace Network
         }
 
         // set up the socket address structure
-        m_remoteinfo.sin_family = AF_INET;
-        m_remoteinfo.sin_port = htons( p_port );
-        m_remoteinfo.sin_addr.s_addr = p_addr;
-        memset( &(m_remoteinfo.sin_zero), 0, 8 );
+        m_remoteInfo.sin_family = AF_INET;
+        m_remoteInfo.sin_port = htons(p_port);
+        m_remoteInfo.sin_addr.s_addr = p_addr;
+        memset(&(m_remoteInfo.sin_zero), 0, 8);
 
         int err;
         socklen_t len = sizeof(struct sockaddr);
-        err = connect(m_sock, (struct sockaddr *)&m_remoteinfo, len);
+        err = connect(m_sock, (struct sockaddr *)&m_remoteInfo, len);
         if(err == -1)
         {
         	throw( Exception( GetError() ) );
         }
         m_connected = true;
 
-        err = getsockname(m_sock, (struct sockaddr *)m_localInfo, &len);
+        err = getsockname(m_sock, (struct sockaddr *)&m_localInfo, &len);
         if(err == -1)
         {
         	throw( Exception( GetError() ) );
@@ -141,8 +143,8 @@ namespace Network
     	if(err == -1)
     	{
     		// 非阻塞模式下，阻塞错误相当于发送0字节，不抛出异常而交给上层处理。
-    		Error errno = GetError();
-    		if(errno != EOperationWouldBlock)
+    		Error errorCode = GetError();
+            if (errorCode != EOperationWouldBlock)
     		{
     			throw( Exception(errno) );
     		}
