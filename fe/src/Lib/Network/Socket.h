@@ -85,10 +85,28 @@ namespace Network
 		struct sockaddr_in m_remoteInfo;
 	};
 
-    class ListeningSocket : public Socket
+
+    class ListenSocket : public Socket
     {
+    public:
+        ListenSocket();
+
+        void Listen(PORT p_port);
+
+        DataSocket Accept();
+
+        void Close();
+
+        bool IsListening() const
+        {
+            return m_isListening;
+        }
+
+    protected:
+        bool m_isListening;
 
     };
+
 
 }	// end namespace Network
 

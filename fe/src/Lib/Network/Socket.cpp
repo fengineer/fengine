@@ -41,6 +41,7 @@ namespace Network
     void Socket::SetBlocking(bool p_isBlocking)
 	{
 		int err;
+
 		#ifdef _WIN32
 			unsigned long mode = !p_isBlocking;	// 与本函数相反的语义
 			err = ioctlsocket(m_sock, FIONBIO, &mode);
@@ -56,6 +57,7 @@ namespace Network
             }
             err = fcntl( m_sock, F_SETFL, flags );
 		#endif
+
         if(err == -1)
         {
         	throw(Exception(GetError()));
@@ -187,8 +189,77 @@ namespace Network
 
 
     // ------------------------------------------------------------
+    ListenSocket::ListenSocket()
+        :m_isListening(false)
+    {
+    }
+
+    void ListenSocket::Listen(PORT p_port)
+    {
+        if (m_sock == -1)
+        {
+            m_sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+            if (m_sock == -1)
+            {
+                throw Exception(GetError());
+            }
+        }
+
+        int err = -1;
+        int reuse = 1;
+        err = setsockopt(m_sock, SOL_SOCKET, SO_REUSEADDR, (char *)&reuse, sizeof(reuse));
+        if (err != 0)
+        {
+            throw Exception(GetError());
+        }
+
+        m_localInfo.sin_family = AF_INET;
+        m_localInfo.sin_port = htons(p_port);
+        m_localInfo.sin_addr.s_addr = htonl(INADDR_ANY);
+        memset(&(m_localInfo.sin_zero), 0, 8);
+
+        err = bind(m_sock, (sockaddr *)&m_localInfo, sizeof(m_localInfo));
+        if (err == -1)
+        {
+            throw Exception(GetError());
+        }
+
+        err = listen(m_sock, 16);   // 16 for temp.
+        if (err == -1)
+        {
+            throw Exception(GetError());
+        }
+
+        m_isListening = true;
+    }
+
+    DataSocket ListenSocket::Accept()
+    {
+        struct sockaddr addrInfo;
+        int len = sizeof(struct sockaddr);
+        SOCK sock = accept(m_sock, &addrInfo, &len);
+        if (sock == -1)
+        {
+            throw Exception(GetError());
+        }
+
+        return DataSocket(sock);
+    }
+
+    void ListenSocket::Close()
+    {
+        if (m_isListening)
+        {
+            shutdown(m_sock, 2);
+        }
+
+        Socket::Close();
+
+        m_isListening = false;
+    }
 
 
 }	// end namespace Network
+
 }	// end namespace Fengine
 
