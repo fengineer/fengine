@@ -43,7 +43,7 @@ namespace Network
 
     protected:
         WSADATA m_wsaData;
-    }
+    };
 
     System g_system;
     #endif
