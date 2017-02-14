@@ -101,7 +101,6 @@ namespace Network
     {
         struct hostent* host = gethostbyaddr((char*)&p_address, 4, AF_INET);
 
-        // if there was an error, throw an exception.
         if (host == NULL)
         {
             // get the error from h_errno.

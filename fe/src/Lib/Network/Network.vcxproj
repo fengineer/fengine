@@ -44,6 +44,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\Basic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -67,11 +68,15 @@
     <ClInclude Include="Network.h" />
     <ClInclude Include="NetworkErrors.h" />
     <ClInclude Include="NetworkTypes.h" />
+    <ClInclude Include="NetworkUtils.h" />
     <ClInclude Include="Socket.h" />
+    <ClInclude Include="SocketPoller.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NetworkErrors.cpp" />
+    <ClCompile Include="NetworkUtils.cpp" />
     <ClCompile Include="Socket.cpp" />
+    <ClCompile Include="SocketPoller.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

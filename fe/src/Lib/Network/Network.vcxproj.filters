@@ -23,12 +23,24 @@
     <ClInclude Include="NetworkErrors.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="NetworkUtils.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SocketPoller.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NetworkErrors.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Socket.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkUtils.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SocketPoller.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
