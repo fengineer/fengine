@@ -44,6 +44,8 @@ namespace Network
 
 		virtual void Flooded() = 0;
 
+		// 每个Handler都必须定义一个符合自身的静态函数NoRoom，以便处理未有Handler实例时的错误处理
+		// static void NoRoom(CONNECTION &p_conn);
 	protected:
 		CONNECTION *m_connection;
 	};

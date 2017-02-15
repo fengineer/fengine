@@ -25,5 +25,8 @@ along with Fengine.  If not, see <http://www.gnu.org/licenses/>.
 #include "NetworkErrors.h"
 #include "Socket.h"
 #include "NetworkUtils.h"
+#include "Connection.h"
+#include "Protocol.h"
+#include "ConnectionHandler.h"
 
 #endif // __NETWORK_H__
