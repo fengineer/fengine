@@ -1,6 +1,6 @@
 /*
 This source file is part of Fengine
-For the latest info, see
+For the latest info, see <https://github.com/imgamer/fengine/>.
 
 Copyright (c) 2017 Fengine.
 
