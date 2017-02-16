@@ -28,6 +28,8 @@ namespace Fengine
 {
 namespace Network
 {
+    #define MAX_FD_SIZE FD_SETSIZE;
+
     class SocketPoller
     {
     public:
@@ -38,6 +40,11 @@ namespace Network
 
         virtual int Poll(long p_time);
 
+        bool HasActivity( const Socket& p_socket )
+        {
+            return FD_ISSET(p_socket.GetSock(), &m_activityFDSet) != 0;
+        }
+        
     protected:
         fd_set m_fdSet;
         fd_set m_activityFDSet;
