@@ -57,6 +57,10 @@ namespace Network
 	protected:
 		CONNECTION_LIST m_connections;
 
+		int m_maxDatarate;
+    	int m_sendTimeout;
+	    int m_maxBuffered;
+
 	};
 
 	// -------------------------------------------------
@@ -85,7 +89,20 @@ namespace Network
 	template<typename PROTOCOL, typename HANDLER>
 	void ConnectionMgr<PROTOCOL, HANDLER>::NewConnection(DataSocket &p_socket)
 	{
-		Connection<PROTOCOL> connection(p_socket);
+		Connection<PROTOCOL> conn(p_socket);
+		if(AvailableConnections)
+		{
+			m_connections.push_back(conn);
+
+			Connection<PROTOCOL> &conn2 = *m_connections.rbegin();
+			conn2.SetBlocking(false);
+			conn2.AddHandler(new HANDLER(conn2);
+		}
+		else
+		{
+			 HANDLER::NoRoom(conn);
+			 conn.CloseSocket();
+		}
 	}
 
 
