@@ -184,8 +184,8 @@ namespace Network
                 try
                 {
                     preConnIter->SendBuffer();
-                    if (c->GetBufferedBytes() > m_maxBuffered ||
-                        c->GetLastSendTime() > m_sendTimeout)
+                    if (preConnIter->GetBufferedBytes() > m_maxBuffered ||
+                        preConnIter->GetLastSendTime() > m_sendTimeout)
                     {
                         preConnIter->Close();
                         preConnIter->Handler()->Flooded();
