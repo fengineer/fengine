@@ -65,10 +65,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Connection.h" />
+    <ClInclude Include="ConnectionHandler.h" />
+    <ClInclude Include="ConnectionMgr.h" />
     <ClInclude Include="Network.h" />
     <ClInclude Include="NetworkErrors.h" />
     <ClInclude Include="NetworkTypes.h" />
     <ClInclude Include="NetworkUtils.h" />
+    <ClInclude Include="Protocol.h" />
     <ClInclude Include="Socket.h" />
     <ClInclude Include="SocketPoller.h" />
   </ItemGroup>

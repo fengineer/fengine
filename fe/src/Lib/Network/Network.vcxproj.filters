@@ -29,6 +29,18 @@
     <ClInclude Include="SocketPoller.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Connection.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectionHandler.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectionMgr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NetworkErrors.cpp">
