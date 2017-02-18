@@ -76,7 +76,7 @@ namespace Network
 		int BufferedSize() { return m_bufferSize; }
 
 	protected:
-		char m_buffer[BUFFER_SIZE];
+		char m_buffer[RECEIVE_BUFFER_SIZE];
 		int m_bufferSize;
 
 	};

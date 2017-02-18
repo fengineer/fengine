@@ -51,7 +51,7 @@ namespace Network
 		SocketPoller m_poller;
 
 		m_connectionMgr;
-	}
+	};
 
 	// ----------------------------------------------------------------
 	template<typename PROTOCOL, typename DefaultHandler>

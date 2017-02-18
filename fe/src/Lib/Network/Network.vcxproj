@@ -68,6 +68,7 @@
     <ClInclude Include="Connection.h" />
     <ClInclude Include="ConnectionHandler.h" />
     <ClInclude Include="ConnectionMgr.h" />
+    <ClInclude Include="ListenMgr.h" />
     <ClInclude Include="Network.h" />
     <ClInclude Include="NetworkErrors.h" />
     <ClInclude Include="NetworkTypes.h" />
@@ -75,12 +76,14 @@
     <ClInclude Include="Protocol.h" />
     <ClInclude Include="Socket.h" />
     <ClInclude Include="SocketPoller.h" />
+    <ClInclude Include="Telnet.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NetworkErrors.cpp" />
     <ClCompile Include="NetworkUtils.cpp" />
     <ClCompile Include="Socket.cpp" />
     <ClCompile Include="SocketPoller.cpp" />
+    <ClCompile Include="Telnet.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

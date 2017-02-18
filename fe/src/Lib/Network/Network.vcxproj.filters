@@ -41,6 +41,12 @@
     <ClInclude Include="ConnectionMgr.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ListenMgr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Telnet.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NetworkErrors.cpp">
@@ -53,6 +59,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="SocketPoller.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Telnet.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
