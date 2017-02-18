@@ -100,7 +100,7 @@ namespace Network
 			~ConnectionMgr()
 	{
 		CONNECTION_LIST_ITER iter = m_connections.begin();
-		for(; iter != m_connections.end; iter++)
+		for(; iter != m_connections.end(); iter++)
 		{
 			iter->CloseSocket();
 		}
