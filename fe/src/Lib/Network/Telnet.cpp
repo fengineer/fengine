@@ -31,21 +31,21 @@ namespace Network
 		{
 			char c = p_buffer[i];
 			// 如果是字母，缓冲区也没满，加入到缓冲区
-			if ( c >= 32 && c != 127 && m_buffersize < BUFFERSIZE )
+			if (c >= 32 && c != 127 && m_bufferSize < RECEIVE_BUFFER_SIZE)
 			{ 
-				m_buffer[m_buffersize] = c;
-				m_buffersize++;
+				m_buffer[m_bufferSize] = c;
+				m_bufferSize++;
 			}
 			// 如果是退格符，删除最后一个字符
-			else if (c == 8 && m_buffersize > 0)
+			else if (c == 8 && m_bufferSize > 0)
 			{
-				m_buffersize--;
+				m_bufferSize--;
 			}
 			// 如果是回车换行，命令结束，可以处理了
 			else if (c == '\r' || c == '\n')
 			{
 				// 如果符合条件，把缓冲区封装成字符串发送给连接的处理器
-				if (m_buffersize > 0 && p_conn.Handler() != NULL)
+				if (m_bufferSize > 0 && p_conn.Handler() != NULL)
 				{
 					p_conn.Handler()->Handle(std::string(m_buffer, m_bufferSize));
 				}
