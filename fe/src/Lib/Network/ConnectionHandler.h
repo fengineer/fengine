@@ -18,6 +18,9 @@ You should have received a copy of the GNU Lesser General Public License
 along with Fengine.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifndef __CONNECTION_HANDLER_H__
+#define __CONNECTION_HANDLER_H__
+
 #include "Connection.h"
 
 namespace Fengine
@@ -27,7 +30,7 @@ namespace Network
 	template<typename PROTOCOL, typename Command>
 	class ConnectionHandler
 	{
-		typedef Connection<PROTOCOL, Command> CONNECTION;
+		typedef Connection<PROTOCOL> CONNECTION;
 	public:
 		ConnectionHandler(CONNECTION &p_conn)
 			:m_connection(&p_conn)
@@ -53,3 +56,5 @@ namespace Network
 }	// end namespace Network
 
 }	// end namespace Fengine
+
+#endif // __CONNECTION_HANDLER_H__

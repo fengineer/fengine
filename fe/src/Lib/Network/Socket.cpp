@@ -148,7 +148,7 @@ namespace Network
     		Error errorCode = GetError();
             if (errorCode != EOperationWouldBlock)
     		{
-    			throw( Exception(errno) );
+				throw(Exception(errorCode));
     		}
     		err = 0;
     	}

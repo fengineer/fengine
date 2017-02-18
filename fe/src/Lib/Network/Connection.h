@@ -80,12 +80,12 @@ namespace Network
 
         typename PROTOCOL::HANDLER *Handler()
         {
-            if (m_handlerstack.size() == 0)
+			if (m_handlerStack.size() == 0)
             {
                 return 0;
             }
 
-            return m_handlerstack.top();
+			return m_handlerStack.top();
         }
 
         void AddHandler(typename PROTOCOL::HANDLER *p_handler)
