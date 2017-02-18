@@ -38,7 +38,7 @@ namespace Network
 		typedef typename CONNECTION_LIST::iterator CONNECTION_LIST_ITER;
 
 	public:
-		ConnectionMgr(nt p_maxDatarate = 1024,		// 1 kbytes
+		ConnectionMgr(int p_maxDatarate = 1024,		// 1 kbytes
 						int p_sendTimeout = 60,		// 60 seconds
 						int p_maxBuffered = 8192);	// 8 kbytes
 
@@ -116,7 +116,7 @@ namespace Network
 
 			Connection<PROTOCOL> &conn2 = *m_connections.rbegin();
 			conn2.SetBlocking(false);
-			conn2.AddHandler(new HANDLER(conn2);
+			conn2.AddHandler(new HANDLER(conn2));
 
             m_poller.AddSocket(conn2);
 		}

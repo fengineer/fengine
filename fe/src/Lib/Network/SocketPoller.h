@@ -18,6 +18,9 @@ You should have received a copy of the GNU Lesser General Public License
 along with Fengine.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifndef __SOCKET_POLLER_H__
+#define __SOCKET_POLLER_H__
+
 #include "Socket.h"
 
 #include <set>
@@ -60,3 +63,5 @@ namespace Network
 }   // end namespace Network
 
 }   // end namespace Fengine
+
+#endif // __SOCKET_POLLER_H__

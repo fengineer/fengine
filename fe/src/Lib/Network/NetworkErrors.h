@@ -24,6 +24,8 @@ along with Fengine.  If not, see <http://www.gnu.org/licenses/>.
 #include <exception>
 #include <string>
 
+#include "NetworkTypes.h"
+
 namespace Fengine
 {
 
@@ -87,7 +89,7 @@ namespace Network
 	class Exception : public std::exception
 	{
 	public:
-		Exception(int p_code);
+		Exception(Error p_code);
 
 		Error ErrorCode();
 

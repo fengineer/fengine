@@ -50,7 +50,7 @@ namespace Network
 
 		SocketPoller m_poller;
 
-		m_connectionMgr;
+		ConnectionMgr<PROTOCOL, DefaultHandler> *m_connectionMgr;
 	};
 
 	// ----------------------------------------------------------------
@@ -75,7 +75,7 @@ namespace Network
 	}
 
 	template<typename PROTOCOL, typename DefaultHandler>
-	ListenMgr<PROTOCOL, DefaultHandler>::
+	void ListenMgr<PROTOCOL, DefaultHandler>::
 		AddListenPort(PORT p_port)
 	{
 		if ((int)m_listenSockets.size() >= MAX_FD_SIZE)
@@ -93,14 +93,14 @@ namespace Network
 	}
 
 	template<typename PROTOCOL, typename DefaultHandler>
-	ListenMgr<PROTOCOL, DefaultHandler>::
-		SetConnectionMgr(onnectionMgr<PROTOCOL, DefaultHandler> &p_connMgr)
+	void ListenMgr<PROTOCOL, DefaultHandler>::
+		SetConnectionMgr(ConnectionMgr<PROTOCOL, DefaultHandler> &p_connMgr)
 	{
 		m_connectionMgr = &p_connMgr;
 	}
 
 	template<typename PROTOCOL, typename DefaultHandler>
-	ListenMgr<PROTOCOL, DefaultHandler>::
+	void ListenMgr<PROTOCOL, DefaultHandler>::
 		Listen()
 	{
 		if(m_poller.Poll() > 0)

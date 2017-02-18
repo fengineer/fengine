@@ -36,7 +36,7 @@ namespace Network
 	public:
 		typedef ConnectionHandler<T, Command> HANDLER;
 
-		void Translate(Connection<T> &p_connection, char *p_data, int p_size) = 0;
+		virtual void Translate(Connection<T> &p_connection, char *p_data, int p_size) = 0;
 	};
 
 }   // end namespace Network
