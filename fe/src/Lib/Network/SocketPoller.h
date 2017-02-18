@@ -31,7 +31,7 @@ namespace Fengine
 {
 namespace Network
 {
-    #define MAX_FD_SIZE FD_SETSIZE;
+    #define MAX_FD_SIZE FD_SETSIZE
 
     class SocketPoller
     {

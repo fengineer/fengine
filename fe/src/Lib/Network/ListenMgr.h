@@ -68,7 +68,7 @@ namespace Network
 	ListenMgr<PROTOCOL, DefaultHandler>::
 		~ListenMgr()
 	{
-		for(size_t i = 0; i < m_listenSockets.size(), i++)
+		for (size_t i = 0; i < m_listenSockets.size(); i++)
 		{
 			m_listenSockets[i].Close();
 		}
@@ -80,7 +80,7 @@ namespace Network
 	{
 		if ((int)m_listenSockets.size() >= MAX_FD_SIZE)
 		{
-			throw( Exception(ESocketLimitReached) );
+			throw Exception(ESocketLimitReached);
 		}
 
 		ListenSocket ls = ListenSocket();
