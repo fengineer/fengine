@@ -11,8 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{0960ECAB-4720-4B2A-A919-5A76158B22F0}</ProjectGuid>
-    <RootNamespace>Network</RootNamespace>
+    <ProjectGuid>{66F829C7-D0AA-41C3-AEAB-AF3EDDBB306B}</ProjectGuid>
+    <RootNamespace>WorldApp</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -44,7 +44,6 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\Basic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -65,22 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Connection.h" />
-    <ClInclude Include="ConnectionHandler.h" />
-    <ClInclude Include="ConnectionMgr.h" />
-    <ClInclude Include="Network.h" />
-    <ClInclude Include="NetworkErrors.h" />
-    <ClInclude Include="NetworkTypes.h" />
-    <ClInclude Include="NetworkUtils.h" />
-    <ClInclude Include="Protocol.h" />
-    <ClInclude Include="Socket.h" />
-    <ClInclude Include="SocketPoller.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="NetworkErrors.cpp" />
-    <ClCompile Include="NetworkUtils.cpp" />
-    <ClCompile Include="Socket.cpp" />
-    <ClCompile Include="SocketPoller.cpp" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

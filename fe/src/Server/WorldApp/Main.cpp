@@ -18,18 +18,7 @@ You should have received a copy of the GNU Lesser General Public License
 along with Fengine.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __NETWORK_H__
-#define __NETWORK_H__
-
-#include "NetworkTypes.h"
-#include "NetworkErrors.h"
-#include "Socket.h"
-#include "NetworkUtils.h"
-#include "Connection.h"
-#include "Protocol.h"
-#include "ConnectionHandler.h"
-#include "ConnectionMgr.h"
-#include "ListenMgr.h"
-#include "Telnet.h"
-
-#endif // __NETWORK_H__
+int main(int argc, char *argv[])
+{
+	return 0;
+}

@@ -66,6 +66,7 @@
   <ItemGroup>
     <ClInclude Include="Basic.h" />
     <ClInclude Include="BasicTypes.h" />
+    <ClInclude Include="Singleton.h" />
     <ClInclude Include="Time.h" />
   </ItemGroup>
   <ItemGroup>

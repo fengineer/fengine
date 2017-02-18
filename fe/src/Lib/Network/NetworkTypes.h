@@ -1,6 +1,6 @@
 /*
 This source file is part of Fengine
-For the latest info, see 
+For the latest info, see <https://github.com/imgamer/fengine/>. 
 
 Copyright (c) 2017 Fengine.
 
@@ -45,13 +45,13 @@ namespace Fengine
 namespace Network
 {
 #ifdef _WIN32
-    typedef SOCKET sock;
+    typedef SOCKET SOCK;
 #else
-    typedef int sock;
+    typedef int SOCK;
 #endif
 
-    typedef unsigned short int port;
-    typedef unsigned long int ipaddress;
+    typedef unsigned short int PORT;
+    typedef unsigned long int IP_ADDRESS;
 
 }	// end namespace Network
 

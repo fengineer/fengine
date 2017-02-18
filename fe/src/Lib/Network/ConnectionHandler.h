@@ -18,18 +18,38 @@ You should have received a copy of the GNU Lesser General Public License
 along with Fengine.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __NETWORK_H__
-#define __NETWORK_H__
-
-#include "NetworkTypes.h"
-#include "NetworkErrors.h"
-#include "Socket.h"
-#include "NetworkUtils.h"
 #include "Connection.h"
-#include "Protocol.h"
-#include "ConnectionHandler.h"
-#include "ConnectionMgr.h"
-#include "ListenMgr.h"
-#include "Telnet.h"
 
-#endif // __NETWORK_H__
+namespace Fengine
+{
+namespace Network
+{
+	template<typename PROTOCOL, typename Command>
+	class ConnectionHandler
+	{
+		typedef Connection<PROTOCOL, Command> CONNECTION;
+	public:
+		ConnectionHandler(CONNECTION &p_conn)
+			:m_connection(&p_conn)
+		{
+		}
+
+		virtual void Enter() = 0;
+
+		virtual void Leave() = 0;
+
+		virtual void Handle(Command p_data) = 0;
+
+		virtual void Hangup() = 0;
+
+		virtual void Flooded() = 0;
+
+		// 每个Handler都必须定义一个符合自身的静态函数NoRoom，以便处理未有Handler实例时的错误处理
+		// static void NoRoom(CONNECTION &p_conn);
+	protected:
+		CONNECTION *m_connection;
+	};
+
+}	// end namespace Network
+
+}	// end namespace Fengine

@@ -18,18 +18,27 @@ You should have received a copy of the GNU Lesser General Public License
 along with Fengine.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __NETWORK_H__
-#define __NETWORK_H__
-
 #include "NetworkTypes.h"
-#include "NetworkErrors.h"
-#include "Socket.h"
-#include "NetworkUtils.h"
-#include "Connection.h"
-#include "Protocol.h"
-#include "ConnectionHandler.h"
-#include "ConnectionMgr.h"
-#include "ListenMgr.h"
-#include "Telnet.h"
 
-#endif // __NETWORK_H__
+#include <string>
+
+namespace Fengine
+{
+
+namespace Network
+{
+    // 检查一个字符串是否是ip地址格式
+    bool IsIPAddress(const std::string p_address);
+
+    // convert ip like as "172.16.0.173" to IP_ADDRESS，触发DNS查询会导致阻塞。
+    IP_ADDRESS GetIPAddress(const std::string p_strAddress);
+
+    // convert IP_ADDRESS to type like as "172.16.0.173"
+    std::string GetIPString(IP_ADDRESS p_address);
+
+    // 使用DNS查询转换一个IP_ADDRESS地址为字符串模式，会导致阻塞
+    std::string GetHostNameString(IP_ADDRESS p_address);
+
+}   // end namespace Network
+
+}   // end namespace Fengine

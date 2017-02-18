@@ -1,6 +1,6 @@
 /*
 This source file is part of Fengine
-For the latest info, see
+For the latest info, see <https://github.com/imgamer/fengine/>.
 
 Copyright (c) 2017 Fengine.
 
@@ -21,7 +21,96 @@ along with Fengine.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef __SOCKET_H__
 #define __SOCKET_H__
 
+#include "NetworkTypes.h"
 
+namespace Fengine
+{
+
+namespace Network
+{
+
+	class Socket
+	{
+	public:
+		void SetBlocking(bool p_blockMode);
+
+		void Close();
+
+		SOCK GetSock() const
+		{
+			return m_sock;
+		}
+
+		PORT GetLocalPort() const
+		{
+			return ntohs( m_localInfo.sin_port );
+		}
+
+		IP_ADDRESS GetLocalAddress() const
+		{
+			return m_localInfo.sin_addr.s_addr;
+		}
+	protected:
+		Socket(SOCK p_socket = -1);	// Socket基类不允许实例化
+
+		SOCK m_sock;
+		bool m_isBlocking;
+		struct sockaddr_in m_localInfo;
+	};
+
+
+	class DataSocket : public Socket
+	{
+	public:
+		DataSocket(SOCK p_socket);
+
+		void Connect( IP_ADDRESS p_addr, PORT p_port );
+		int Send( const char *p_buffer, int p_size );
+		int Receive( char *p_buffer, int p_size );
+
+		void Close();
+
+		IP_ADDRESS GetRemoteAddress() const
+		{
+			return m_remoteInfo.sin_addr.s_addr;
+		}
+
+		PORT GetRemotePort() const
+		{
+			return m_remoteInfo.sin_port;
+		}
+	protected:
+		bool m_connected;
+
+		struct sockaddr_in m_remoteInfo;
+	};
+
+
+    class ListenSocket : public Socket
+    {
+    public:
+        ListenSocket();
+
+        void Listen(PORT p_port);
+
+        DataSocket Accept();
+
+        void Close();
+
+        bool IsListening() const
+        {
+            return m_isListening;
+        }
+
+    protected:
+        bool m_isListening;
+
+    };
+
+
+}	// end namespace Network
+
+}	// end namespace Fengine
 
 
 #endif  // __SOCKET_H__

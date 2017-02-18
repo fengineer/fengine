@@ -18,18 +18,29 @@ You should have received a copy of the GNU Lesser General Public License
 along with Fengine.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __NETWORK_H__
-#define __NETWORK_H__
+#ifndef __PROTOCOL_H__
+#define __PROTOCOL_H__
 
-#include "NetworkTypes.h"
-#include "NetworkErrors.h"
-#include "Socket.h"
-#include "NetworkUtils.h"
 #include "Connection.h"
-#include "Protocol.h"
 #include "ConnectionHandler.h"
-#include "ConnectionMgr.h"
-#include "ListenMgr.h"
-#include "Telnet.h"
 
-#endif // __NETWORK_H__
+namespace Fengine
+{
+
+namespace Network
+{
+
+	template<typename T, typename Command>
+	class Protocol
+	{
+	public:
+		typedef ConnectionHandler<T, Command> HANDLER;
+
+		void Translate(Connection<T> &p_connection, char *p_data, int p_size) = 0;
+	};
+
+}   // end namespace Network
+
+}   // end namespace Fengine
+
+#endif // __PROTOCOL_H__
