@@ -28,5 +28,8 @@ along with Fengine.  If not, see <http://www.gnu.org/licenses/>.
 #include "Connection.h"
 #include "Protocol.h"
 #include "ConnectionHandler.h"
+#include "ConnectionMgr.h"
+#include "ListenMgr.h"
+#include "Telnet.h"
 
 #endif // __NETWORK_H__

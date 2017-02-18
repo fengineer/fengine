@@ -116,8 +116,6 @@ namespace Network
 						m_connectionMgr->NewConnection(dsocket);
 					}
 					// 仅过滤EOperationWouldBlock异常，这是为了防止连接欺骗（connection exploit）
-					// socket检测到连接，一旦接受了accept请求但接下来无法检测到连接（例如客户端连接马上又断开的情况）
-					// 所以，如果连接阻塞了，那么忽略它。
 					// SetBlocking是设置了非阻塞，但是遇到阻塞（没读到数据）会抛出EOperationWouldBlock（经过转换的）异常。
 					catch (Exception& e)
 					{
