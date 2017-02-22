@@ -111,7 +111,7 @@ namespace Network
 				{
 					try
 					{
-						DataSocket dsocket = m_sockets[i].Accept();
+						DataSocket dsocket = m_listenSockets[i].Accept();
 
 						m_connectionMgr->NewConnection(dsocket);
 					}

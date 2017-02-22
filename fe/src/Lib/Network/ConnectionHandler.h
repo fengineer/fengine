@@ -43,7 +43,7 @@ namespace Network
 
 		virtual void Handle(Command p_data) = 0;
 
-		virtual void Hangup() = 0;
+		virtual void Hungup() = 0;
 
 		virtual void Flooded() = 0;
 

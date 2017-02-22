@@ -32,12 +32,12 @@ namespace Thread
 	#endif
 
 	#ifdef _WIN32
-		DWORD WINAPI DummyRun(void *p_data);
+		DWORD WINAPI DummyRun(void *p_data)
 	#else
-		void *DummyRun(void *p_data);
+		void *DummyRun(void *p_data)
 	#endif
 		{
-			DummyData dummy = ( DummyData * )p_data;
+			DummyData *dummy = ( DummyData * )p_data;
 			dummy->m_func(dummy->m_data);
 
 			delete dummy;
@@ -47,7 +47,7 @@ namespace Thread
 
 	ThreadID Create(ThreadFunc p_func, void *p_data)
 	{
-		DummyData data = new DummyData;
+		DummyData *data = new DummyData;
 		data->m_func = p_func;
 		data->m_data = p_data;
 
@@ -71,6 +71,17 @@ namespace Thread
 		return t;
 	}
 
+	void WaitForFinish(ThreadID p_threadID)
+	{
+#ifdef _WIN32
+		WaitForSingleObject(g_handleMap[p_threadID], INFINITE);
+		CloseHandle(g_handleMap[p_threadID]);
+		g_handleMap.erase(p_threadID);
+#else
+		// join实质上是把控制权转交给p_threadID并等待它结束
+		pthread_join(p_threadID, NULL);
+#endif
+	}
 }	// end namespace Fengine
 
 }	// end namespace Thread

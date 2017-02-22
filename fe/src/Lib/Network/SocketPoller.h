@@ -41,7 +41,7 @@ namespace Network
         void AddSocket(const Socket &p_socket);
         void RemoveSocket(const Socket &p_socket);
 
-        virtual int Poll(long p_time);
+        virtual int Poll(long p_time = 0);
 
         bool HasActivity( const Socket& p_socket )
         {
