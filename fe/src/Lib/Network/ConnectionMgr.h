@@ -110,7 +110,7 @@ namespace Network
 	void ConnectionMgr<PROTOCOL, HANDLER>::NewConnection(DataSocket &p_socket)
 	{
 		Connection<PROTOCOL> conn(p_socket);
-		if(AvailableConnections)
+		if(AvailableConnections())
 		{
 			m_connections.push_back(conn);
 
@@ -142,7 +142,7 @@ namespace Network
     {
         if (m_poller.Poll() > 0)
         {
-            CONNECTION_LIST_ITER connIter = m_connections.begine();
+            CONNECTION_LIST_ITER connIter = m_connections.begin();
             CONNECTION_LIST_ITER preConnIter;
             while (connIter != m_connections.end())
             {
@@ -174,7 +174,7 @@ namespace Network
     void ConnectionMgr<PROTOCOL, HANDLER>::
         Send()
     {
-        CONNECTION_LIST_ITER connIter = m_connections.begine();
+        CONNECTION_LIST_ITER connIter = m_connections.begin();
         CONNECTION_LIST_ITER preConnIter;
         while (connIter != m_connections.end())
         {
@@ -206,7 +206,7 @@ namespace Network
     void ConnectionMgr<PROTOCOL, HANDLER>::
         CondemnConnections()
     {
-        CONNECTION_LIST_ITER connIter = m_connections.begine();
+        CONNECTION_LIST_ITER connIter = m_connections.begin();
         CONNECTION_LIST_ITER preConnIter;
         while (connIter != m_connections.end())
         {

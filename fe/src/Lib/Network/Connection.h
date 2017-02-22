@@ -173,7 +173,7 @@ namespace Network
 
     template<class PROTOCOL>
     Connection<PROTOCOL>::Connection(DataSocket &p_socket)
-        :DataSocket(p_socket),
+        :DataSocket(p_socket)
     {
         Initialize();
     }

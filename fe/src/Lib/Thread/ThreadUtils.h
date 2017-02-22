@@ -48,7 +48,7 @@ namespace Thread
 	{
 		ThreadFunc m_func;
 		void *m_data;
-	}
+	};
 
 	#ifdef _WIN32
 		DWORD WINAPI DummyRun(void *p_data);
@@ -58,7 +58,7 @@ namespace Thread
 
 	ThreadID Create(ThreadFunc p_func, void *p_data);
 
-	ThreadID GetID()
+	inline ThreadID GetID()
 	{
 #ifdef _WIN32
 		return GetCurrentThreadId();
@@ -67,19 +67,9 @@ namespace Thread
 #endif
 	}
 
-	void WaitForFinish(ThreadID p_threadID)
-	{
-	#ifdef _WIN32
-		WaitForSingleObject(g_handleMap[p_threadID], INFINITE);
-		CloseHandle(g_handleMap[p_threadID]);
-		g_handleMap.erase(p_threadID);
-	#else
-		// join实质上是把控制权转交给p_threadID并等待它结束
-		pthread_join(p_threadID, NULL);
-	#endif
-	}
+	void WaitForFinish(ThreadID p_threadID);
 
-	void Kill(ThreadID p_threadID)
+	inline void Kill(ThreadID p_threadID)
 	{
 	#ifdef _WIN32
 		TerminateThread(g_handleMap[p_threadID], 0);
@@ -90,7 +80,7 @@ namespace Thread
 	#endif
 	}
 
-	void YieldThread(int p_milliseconds = 0)
+	inline void YieldThread(int p_milliseconds = 0)
 	{
 	#ifdef _WIN32
 		Sleep(p_milliseconds);			// 毫秒级
