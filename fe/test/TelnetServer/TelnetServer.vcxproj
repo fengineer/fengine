@@ -11,12 +11,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{CCD99997-7E1A-4D88-9453-43EF00281F98}</ProjectGuid>
-    <RootNamespace>Basic</RootNamespace>
+    <ProjectGuid>{41BFFCBE-617F-483B-8C08-260F40A30FB0}</ProjectGuid>
+    <RootNamespace>TelnetServer</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
@@ -44,9 +44,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\src\Lib\Basic;..\..\src\Lib\Network;..\..\src\Lib\Thread;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -64,13 +67,37 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Basic.h" />
-    <ClInclude Include="BasicTypes.h" />
-    <ClInclude Include="Singleton.h" />
-    <ClInclude Include="Time.h" />
+    <ClInclude Include="..\..\src\Lib\Basic\Basic.h" />
+    <ClInclude Include="..\..\src\Lib\Basic\BasicTypes.h" />
+    <ClInclude Include="..\..\src\Lib\Basic\Singleton.h" />
+    <ClInclude Include="..\..\src\Lib\Basic\Time.h" />
+    <ClInclude Include="..\..\src\Lib\Network\Connection.h" />
+    <ClInclude Include="..\..\src\Lib\Network\ConnectionHandler.h" />
+    <ClInclude Include="..\..\src\Lib\Network\ConnectionMgr.h" />
+    <ClInclude Include="..\..\src\Lib\Network\ListenMgr.h" />
+    <ClInclude Include="..\..\src\Lib\Network\Network.h" />
+    <ClInclude Include="..\..\src\Lib\Network\NetworkErrors.h" />
+    <ClInclude Include="..\..\src\Lib\Network\NetworkTypes.h" />
+    <ClInclude Include="..\..\src\Lib\Network\NetworkUtils.h" />
+    <ClInclude Include="..\..\src\Lib\Network\Protocol.h" />
+    <ClInclude Include="..\..\src\Lib\Network\Socket.h" />
+    <ClInclude Include="..\..\src\Lib\Network\SocketPoller.h" />
+    <ClInclude Include="..\..\src\Lib\Network\Telnet.h" />
+    <ClInclude Include="..\..\src\Lib\Thread\Thread.h" />
+    <ClInclude Include="..\..\src\Lib\Thread\ThreadException.h" />
+    <ClInclude Include="..\..\src\Lib\Thread\ThreadMutex.h" />
+    <ClInclude Include="..\..\src\Lib\Thread\ThreadUtils.h" />
+    <ClInclude Include="TelnetLogon.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Time.cpp" />
+    <ClCompile Include="..\..\src\Lib\Basic\Time.cpp" />
+    <ClCompile Include="..\..\src\Lib\Network\NetworkErrors.cpp" />
+    <ClCompile Include="..\..\src\Lib\Network\NetworkUtils.cpp" />
+    <ClCompile Include="..\..\src\Lib\Network\Socket.cpp" />
+    <ClCompile Include="..\..\src\Lib\Network\SocketPoller.cpp" />
+    <ClCompile Include="..\..\src\Lib\Network\Telnet.cpp" />
+    <ClCompile Include="..\..\src\Lib\Thread\ThreadUtils.cpp" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
