@@ -38,7 +38,14 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>../bin/win/</OutDir>
+    <IntDir>..\Build\Temp\$(ProjectName)$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>../bin/win/</OutDir>
+    <IntDir>..\Build\Temp\$(ProjectName)$(Configuration)\</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -64,6 +71,35 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\Lib\Basic\Basic.h" />
+    <ClInclude Include="..\..\src\Lib\Basic\BasicTypes.h" />
+    <ClInclude Include="..\..\src\Lib\Basic\Singleton.h" />
+    <ClInclude Include="..\..\src\Lib\Basic\Time.h" />
+    <ClInclude Include="..\..\src\Lib\Network\Connection.h" />
+    <ClInclude Include="..\..\src\Lib\Network\ConnectionHandler.h" />
+    <ClInclude Include="..\..\src\Lib\Network\ConnectionMgr.h" />
+    <ClInclude Include="..\..\src\Lib\Network\ListenMgr.h" />
+    <ClInclude Include="..\..\src\Lib\Network\Network.h" />
+    <ClInclude Include="..\..\src\Lib\Network\NetworkErrors.h" />
+    <ClInclude Include="..\..\src\Lib\Network\NetworkTypes.h" />
+    <ClInclude Include="..\..\src\Lib\Network\NetworkUtils.h" />
+    <ClInclude Include="..\..\src\Lib\Network\Protocol.h" />
+    <ClInclude Include="..\..\src\Lib\Network\Socket.h" />
+    <ClInclude Include="..\..\src\Lib\Network\SocketPoller.h" />
+    <ClInclude Include="..\..\src\Lib\Network\Telnet.h" />
+    <ClInclude Include="..\..\src\Lib\Thread\Thread.h" />
+    <ClInclude Include="..\..\src\Lib\Thread\ThreadException.h" />
+    <ClInclude Include="..\..\src\Lib\Thread\ThreadMutex.h" />
+    <ClInclude Include="..\..\src\Lib\Thread\ThreadUtils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\Lib\Basic\Time.cpp" />
+    <ClCompile Include="..\..\src\Lib\Network\NetworkErrors.cpp" />
+    <ClCompile Include="..\..\src\Lib\Network\NetworkUtils.cpp" />
+    <ClCompile Include="..\..\src\Lib\Network\Socket.cpp" />
+    <ClCompile Include="..\..\src\Lib\Network\SocketPoller.cpp" />
+    <ClCompile Include="..\..\src\Lib\Network\Telnet.cpp" />
+    <ClCompile Include="..\..\src\Lib\Thread\ThreadUtils.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

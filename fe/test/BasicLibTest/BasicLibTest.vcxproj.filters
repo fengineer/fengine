@@ -9,5 +9,99 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
+    <Filter Include="Basic">
+      <UniqueIdentifier>{8a759fce-ee5f-42df-80a8-0727cd0f12e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network">
+      <UniqueIdentifier>{f99c3936-8399-4768-b7d7-5fd5d3380a79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Thread">
+      <UniqueIdentifier>{5329c09d-3d69-4da7-ba96-b653eb8f4bdc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\Lib\Basic\Basic.h">
+      <Filter>Basic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Lib\Basic\BasicTypes.h">
+      <Filter>Basic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Lib\Basic\Singleton.h">
+      <Filter>Basic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Lib\Basic\Time.h">
+      <Filter>Basic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Lib\Network\Connection.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Lib\Network\ConnectionHandler.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Lib\Network\ConnectionMgr.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Lib\Network\ListenMgr.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Lib\Network\Network.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Lib\Network\NetworkErrors.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Lib\Network\NetworkTypes.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Lib\Network\NetworkUtils.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Lib\Network\Protocol.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Lib\Network\Socket.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Lib\Network\SocketPoller.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Lib\Network\Telnet.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Lib\Thread\ThreadUtils.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Lib\Thread\ThreadMutex.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Lib\Thread\ThreadException.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Lib\Thread\Thread.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\Lib\Basic\Time.cpp">
+      <Filter>Basic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Lib\Network\NetworkErrors.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Lib\Network\NetworkUtils.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Lib\Network\Socket.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Lib\Network\SocketPoller.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Lib\Network\Telnet.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Lib\Thread\ThreadUtils.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
