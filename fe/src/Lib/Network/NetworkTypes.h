@@ -29,13 +29,16 @@ along with Fengine.  If not, see <http://www.gnu.org/licenses/>.
 		typedef int socklen_t;
 	#endif
 #else
-	#include <sys/types.h>
-	#include <sys/socket.h>
-	#include <netinet/in.h>
-	#include <unistd.h>
-	#include <arpa/inet.h>
-	#include <errno.h>
-	#include <fcntl.h>
+	#include <sys/types.h>      // header containing all basic data types and
+                                // typedefs
+    #include <sys/socket.h>     // header containing socket data types and
+                                // functions
+    #include <netinet/in.h>     // IPv4 and IPv6 stuff
+    #include <unistd.h>         // for gethostname()
+    #include <netdb.h>          // for DNS - gethostbyname(),h_errno
+    #include <arpa/inet.h>      // contains all inet_* functions
+    #include <errno.h>          // contains the error functions
+    #include <fcntl.h>          // file control
 #endif
 
 
