@@ -60,7 +60,7 @@ namespace Fengine
         {
             if (m_instance == NULL)
             {
-                m_instance = new T();
+                m_instance = T();
             }
         }
 
