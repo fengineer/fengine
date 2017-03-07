@@ -35,7 +35,7 @@ namespace Network
         FD_SET(p_socket.GetSock(), &m_fdSet);
 
         #ifndef _WIN32
-            m_socketDescs.inset(p_socket.GetSock());
+            m_socketDescs.insert(p_socket.GetSock());
         #endif
     }
 

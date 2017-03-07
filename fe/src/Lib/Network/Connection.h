@@ -135,6 +135,11 @@ namespace Network
             }
         }
 
+        void Close()
+        {
+            m_closed = true;
+        }
+
         void CloseSocket()
         {
             DataSocket::Close();

@@ -20,6 +20,7 @@ along with Fengine.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Socket.h"
 
+#include <cstring>
 #include "NetworkErrors.h"
 
 namespace Fengine
@@ -236,7 +237,7 @@ namespace Network
     DataSocket ListenSocket::Accept()
     {
         struct sockaddr addrInfo;
-        int len = sizeof(struct sockaddr);
+        socklen_t len = sizeof(struct sockaddr);
         SOCK sock = accept(m_sock, &addrInfo, &len);
         if (sock == -1)
         {

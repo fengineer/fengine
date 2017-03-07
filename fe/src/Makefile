@@ -2,25 +2,32 @@
 CXX = g++
 
 # LIB directory
-FENGINELIBDIR = ./Lib
-BASICDIR = $(FENGINELIBDIR )/Basic
-NETWORKDIR = $(FENGINELIBDIR)/Network
+FENGINE_LIB_DIR = ./Lib
+BASIC_DIR = $(FENGINELIBDIR )/Basic
+NETWORK_DIR = $(FENGINELIBDIR)/Network
+THREAD_DIR = $(FENGINELIBDIR)/Network
 
 # test directory
-TESTDIR = ../test
-BASICLIBTESTDIR = $(TESTDIR)/BasicLibTest
+TEST_DIR = ../test
+BASIC_LIB_TEST_DIR = $(TESTDIR)/BasicLibTest
+TELNET_SERVER_DIR = $(TESTDIR)/TelnetServer
 
 # libraries
 LIBS = -lpthread -ldl -lutil
 
 # flags
-CFLAGS = -I$(FENGINELIBDIR) -Xlinker -export-dynamic -g3
+CFLAGS = -I$(FENGINE_LIB_DIR) -Xlinker -export-dynamic -g3
 
 libs: $(wildcard *.cpp)
-	$(CXX) $(CFLAGS) $(BASICDIR)/*.cpp -c;
-	$(CXX) $(CFLAGS) $(NETWORKDIR)/*.cpp -c;
+	$(CXX) $(CFLAGS) $(BASIC_DIR)/*.cpp -c;
+	$(CXX) $(CFLAGS) $(NETWORK_DIR)/*.cpp -c;
+	$(CXX) $(CFLAGS) $(THREAD_DIR)/*.cpp -c;
 
 basicLibTest: $(wildcard *.cpp)
-	$(CXX) $(CFLAGS) $(BASICLIBTESTDIR)/*.cpp -c;
+	$(CXX) $(CFLAGS) $(BASIC_LIB_TEST_DIR)/*.cpp -c;
 	$(CXX) $(CFLAGS) *.o $(LIBS);
 
+telnetServer: $(wildcard *.cpp)
+	$(CXX) $(CFLAGS) $(TELNET_SERVER_DIR)/*.cpp -c;
+	$(CXX) $(CFLAGS) *.o $(LIBS);
+	

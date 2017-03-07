@@ -34,7 +34,7 @@ namespace Network
 	template<typename PROTOCOL, typename HANDLER>
 	class ConnectionMgr
 	{
-		typedef std::list<Connection<PROTOCOL>> CONNECTION_LIST;
+		typedef std::list< Connection<PROTOCOL> > CONNECTION_LIST;
 		typedef typename CONNECTION_LIST::iterator CONNECTION_LIST_ITER;
 
 	public:
@@ -86,9 +86,9 @@ namespace Network
 	// ------------------------------------------------------------------------
 	template<typename PROTOCOL, typename HANDLER>
 	ConnectionMgr<PROTOCOL, HANDLER>::
-		ConnectionMgr(int p_maxDatarate = 1024,
-						int p_sendTimeout = 60,
-						int p_maxBuffered = 8192)
+		ConnectionMgr(int p_maxDatarate,
+				int p_sendTimeout,
+				int p_maxBuffered)
 		:m_maxDatarate(p_maxDatarate),
 		m_sendTimeout(p_sendTimeout),
 		m_maxBuffered(p_maxBuffered)
@@ -116,9 +116,9 @@ namespace Network
 
 			Connection<PROTOCOL> &conn2 = *m_connections.rbegin();
 			conn2.SetBlocking(false);
-			conn2.AddHandler(new HANDLER(conn2));
-
             m_poller.AddSocket(conn2);
+
+			conn2.AddHandler(new HANDLER(conn2));
 		}
 		else
 		{
@@ -146,7 +146,7 @@ namespace Network
             CONNECTION_LIST_ITER preConnIter;
             while (connIter != m_connections.end())
             {
-                preConnIter = connIter++;   // 会在此循环中删除连接，保持一个指向当前连接的临时变量
+                preConnIter = connIter++;   // 浼氬湪姝ゅ惊鐜腑鍒犻櫎杩炴帴锛屼繚鎸佷竴涓寚鍚戝綋鍓嶈繛鎺ョ殑涓存椂鍙橀噺
                 if (m_poller.HasActivity(*preConnIter))
                 {
                     try
@@ -178,26 +178,23 @@ namespace Network
         CONNECTION_LIST_ITER preConnIter;
         while (connIter != m_connections.end())
         {
-            preConnIter = connIter++;   // 会在此循环中删除连接，保持一个指向当前连接的临时变量
-            if (m_poller.HasActivity(*preConnIter))
+            preConnIter = connIter++;   // 浼氬湪姝ゅ惊鐜腑鍒犻櫎杩炴帴锛屼繚鎸佷竴涓寚鍚戝綋鍓嶈繛鎺ョ殑涓存椂鍙橀噺
+            try
             {
-                try
-                {
-                    preConnIter->SendBuffer();
-                    if (preConnIter->GetBufferedBytes() > m_maxBuffered ||
-                        preConnIter->GetLastSendTime() > m_sendTimeout)
-                    {
-                        preConnIter->Close();
-                        preConnIter->Handler()->Flooded();
-                        Close(preConnIter);
-                    }
-                }
-                catch (...)
+                preConnIter->SendBuffer();
+                if (preConnIter->GetBufferedBytes() > m_maxBuffered ||
+                    preConnIter->GetLastSendTime() > m_sendTimeout)
                 {
                     preConnIter->Close();
-                    preConnIter->Handler()->Hungup();
+                    preConnIter->Handler()->Flooded();
                     Close(preConnIter);
                 }
+            }
+            catch (...)
+            {
+                preConnIter->Close();
+                preConnIter->Handler()->Hungup();
+                Close(preConnIter);
             }
         }
     }
