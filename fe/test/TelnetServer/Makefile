@@ -11,13 +11,13 @@ PROJECT_TYPE = exe
 SRC_DIR = .
 # LIB src directory
 FENGINE_LIB_DIR = ../../src/Lib
-BASIC_DIR = $(FENGINE_LIB_DIR)/Basic
+COMMON_DIR = $(FENGINE_LIB_DIR)/Common
 NETWORK_DIR = $(FENGINE_LIB_DIR)/Network
 THREAD_DIR = $(FENGINE_LIB_DIR)/Thread
 
 # 头文件包含目录
 INCLUDE_DIR += -I$(SRC_DIR)
-INCLUDE_DIR += -I$(BASIC_DIR) -I$(NETWORK_DIR) -I$(THREAD_DIR)
+INCLUDE_DIR += -I$(COMMON_DIR) -I$(NETWORK_DIR) -I$(THREAD_DIR)
 
 # 共享库链接目录
 LIB_DIR = -L$(TARGET_DIR)
@@ -38,13 +38,13 @@ CFLAGS += $(INCLUDE_DIR)
 CFLAGS += $(LIB_DIR)
 CFLAGS += $(LIBS)
 
-OBJS = $(patsubst $(BASIC_DIR)/%.cpp, $(TEMP_DIR)/%.o, $(wildcard $(BASIC_DIR)/*.cpp))
+OBJS = $(patsubst $(COMMON_DIR)/%.cpp, $(TEMP_DIR)/%.o, $(wildcard $(COMMON_DIR)/*.cpp))
 OBJS += $(patsubst $(NETWORK_DIR)/%.cpp, $(TEMP_DIR)/%.o, $(wildcard $(NETWORK_DIR)/*.cpp))
 OBJS += $(patsubst $(THREAD_DIR)/%.cpp, $(TEMP_DIR)/%.o, $(wildcard $(THREAD_DIR)/*.cpp))
 OBJS += $(patsubst $(SRC_DIR)/%.cpp, $(TEMP_DIR)/%.o, $(wildcard $(SRC_DIR)/*.cpp))
 
 # 编译所有源文件
-$(TEMP_DIR)/%.o : $(BASIC_DIR)/%.cpp
+$(TEMP_DIR)/%.o : $(COMMON_DIR)/%.cpp
 	$(CXX) $(CFLAGS) -c -o $@ $<
 
 $(TEMP_DIR)/%.o : $(NETWORK_DIR)/%.cpp
@@ -73,7 +73,7 @@ clean:
 
 test: 
 	@echo $(FENGINE_LIB_DIR)
-	@echo $(BASIC_DIR)
+	@echo $(COMMON_DIR)
 	@echo $(TEMP_DIR)
 	@echo $(TARGET_DIR)
 	@echo $(OBJS)

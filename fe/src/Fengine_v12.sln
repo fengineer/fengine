@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Basic", "Lib\Basic\Basic.vcxproj", "{CCD99997-7E1A-4D88-9453-43EF00281F98}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{00F3DC26-EF57-4E75-860C-FB45017158BC}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Network", "Lib\Network\Network.vcxproj", "{0960ECAB-4720-4B2A-A919-5A76158B22F0}"
@@ -24,16 +22,14 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Thread", "Lib\Thread\Thread
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TelnetServer", "..\test\TelnetServer\TelnetServer.vcxproj", "{41BFFCBE-617F-483B-8C08-260F40A30FB0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Common", "Lib\Common\Common.vcxproj", "{CCD99997-7E1A-4D88-9453-43EF00281F98}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CCD99997-7E1A-4D88-9453-43EF00281F98}.Debug|Win32.ActiveCfg = Debug|Win32
-		{CCD99997-7E1A-4D88-9453-43EF00281F98}.Debug|Win32.Build.0 = Debug|Win32
-		{CCD99997-7E1A-4D88-9453-43EF00281F98}.Release|Win32.ActiveCfg = Release|Win32
-		{CCD99997-7E1A-4D88-9453-43EF00281F98}.Release|Win32.Build.0 = Release|Win32
 		{0960ECAB-4720-4B2A-A919-5A76158B22F0}.Debug|Win32.ActiveCfg = Debug|Win32
 		{0960ECAB-4720-4B2A-A919-5A76158B22F0}.Debug|Win32.Build.0 = Debug|Win32
 		{0960ECAB-4720-4B2A-A919-5A76158B22F0}.Release|Win32.ActiveCfg = Release|Win32
@@ -54,16 +50,20 @@ Global
 		{41BFFCBE-617F-483B-8C08-260F40A30FB0}.Debug|Win32.Build.0 = Debug|Win32
 		{41BFFCBE-617F-483B-8C08-260F40A30FB0}.Release|Win32.ActiveCfg = Release|Win32
 		{41BFFCBE-617F-483B-8C08-260F40A30FB0}.Release|Win32.Build.0 = Release|Win32
+		{CCD99997-7E1A-4D88-9453-43EF00281F98}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CCD99997-7E1A-4D88-9453-43EF00281F98}.Debug|Win32.Build.0 = Debug|Win32
+		{CCD99997-7E1A-4D88-9453-43EF00281F98}.Release|Win32.ActiveCfg = Release|Win32
+		{CCD99997-7E1A-4D88-9453-43EF00281F98}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{CCD99997-7E1A-4D88-9453-43EF00281F98} = {00F3DC26-EF57-4E75-860C-FB45017158BC}
 		{0960ECAB-4720-4B2A-A919-5A76158B22F0} = {00F3DC26-EF57-4E75-860C-FB45017158BC}
 		{6957E978-54F8-4446-BA82-78C432FF944C} = {06FA395A-A78D-4182-8BD9-A3A45D87044F}
 		{66F829C7-D0AA-41C3-AEAB-AF3EDDBB306B} = {99E836C0-397F-4D9D-BCD3-49E6941F63A2}
 		{A695FB95-5F69-4D65-8E5C-EE64E093BA65} = {00F3DC26-EF57-4E75-860C-FB45017158BC}
 		{41BFFCBE-617F-483B-8C08-260F40A30FB0} = {06FA395A-A78D-4182-8BD9-A3A45D87044F}
+		{CCD99997-7E1A-4D88-9453-43EF00281F98} = {00F3DC26-EF57-4E75-860C-FB45017158BC}
 	EndGlobalSection
 EndGlobal

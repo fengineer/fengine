@@ -27,28 +27,6 @@ namespace Fengine
 namespace Network
 {
 
-    #ifdef _WIN32
-    class System
-    {
-    public:
-        System()
-        {
-            WSAStartup(MAKEWORD(2, 2), &m_wsaData);
-        }
-
-        ~System()
-        {
-            WSACleanup();
-        }
-
-    protected:
-        WSADATA m_wsaData;
-    };
-
-    System g_system;
-    #endif
-
-
     bool IsIPAddress(const std::string p_address)
     {
         for (size_t i = 0; i < p_address.size(); ++i)
