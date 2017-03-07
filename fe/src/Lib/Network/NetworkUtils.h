@@ -19,6 +19,7 @@ along with Fengine.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "NetworkTypes.h"
+#include "Basic.h"
 
 #include <string>
 
@@ -38,6 +39,27 @@ namespace Network
 
     // 使用DNS查询转换一个IP_ADDRESS地址为字符串模式，会导致阻塞
     std::string GetHostNameString(IP_ADDRESS p_address);
+
+
+#ifdef _WIN32
+	class System : public Singleton<System>
+	{
+	public:
+		System()
+		{
+			WSAStartup(MAKEWORD(2, 2), &m_wsaData);
+		}
+
+		~System()
+		{
+			WSACleanup();
+		}
+
+	protected:
+		WSADATA m_wsaData;
+	} g_system;
+#endif
+
 
 }   // end namespace Network
 
