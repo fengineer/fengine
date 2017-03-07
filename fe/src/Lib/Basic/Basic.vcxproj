@@ -72,7 +72,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Basic.h" />
+    <ClInclude Include="Common.h" />
     <ClInclude Include="BasicTypes.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Time.h" />

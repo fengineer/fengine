@@ -19,7 +19,7 @@ along with Fengine.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "NetworkTypes.h"
-#include "Basic.h"
+#include "Common.h"
 
 #include <string>
 
